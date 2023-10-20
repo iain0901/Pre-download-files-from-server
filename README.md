@@ -1,76 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
+# File Downloader Web Application
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>File Downloader - README</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 2em;
-        }
+This project is a simple web application that allows users to download files from provided URLs and tracks the download history.
 
-        h1, h2 {
-            color: #333;
-        }
+## Features
 
-        code {
-            background-color: #f4f4f4;
-            padding: 2px 4px;
-            border-radius: 4px;
-            font-family: 'Courier New', Courier, monospace;
-        }
+- **Download Files**: Users can download files by entering the file's URL.
+- **Download History**: Users can view their past downloads, each entry containing the file name, download link, and the date and time of the download.
+- **Clear History**: Provides the ability to clear the download history.
 
-        pre {
-            background-color: #f4f4f4;
-            border-radius: 4px;
-            padding: 8px;
-            overflow-x: auto;
-        }
-    </style>
-</head>
+## Files
 
-<body>
+- `index.html`: The main interface that contains the form for downloading files.
+- `api.php`: Handles the server-side logic for initiating downloads (actual content not provided).
+- `clear_history.php`: Responsible for clearing the user's download history (actual content not provided).
+- `download_page.php`: Displays the user's download history and provides an option to clear it.
+- `.user.ini`: Configuration file that sets the 'open_basedir' directive for the application.
 
-    <h1>File Downloader</h1>
+## Setup
 
-    <h2>Overview</h2>
-    <p>File Downloader is a simple, user-friendly web application that enables users to download files from provided URLs. The application provides feedback on the success or failure of the download operation and allows users to view their download history.</p>
+You need a standard web server setup (e.g., LAMP stack) to run this application. Place all the files in your web root directory, and make sure PHP is configured correctly to read the `.user.ini` file.
 
-    <h2>Features</h2>
-    <ul>
-        <li><strong>Simple File Download</strong>: Users can download files by entering a valid URL into a form.</li>
-        <li><strong>Download History</strong>: Users can view a list of files they've downloaded during their session.</li>
-        <li><strong>Clear History</strong>: Users can clear their download history with a single click.</li>
-    </ul>
+## Usage
 
-    <h2>How It Works</h2>
-    <ol>
-        <li><strong>Downloading a File</strong>: When a user submits a URL through the form on the main page, a request is sent to the server, which then attempts to download the file from the provided URL. The file is stored on the server, and the path is sent back to the client.</li>
-        <li><strong>Viewing Download History</strong>: If the user navigates to the download page, they can view their download history. This history is stored in cookies on the client's side.</li>
-        <li><strong>Clearing History</strong>: The user has the option to clear their download history. When this action is taken, the 'downloadHistory' cookie is cleared.</li>
-    </ol>
+1. Open `index.html` in your web browser.
+2. Enter the URL of the file you wish to download and submit the form.
+3. You'll be able to see your download history on the `download_page.php` page, accessible from the main page after your first successful download.
+4. To clear your download history, use the "Clear Download History" button on the download page.
 
-    <h2>Installation</h2>
-    <ol>
-        <li>Clone the repository to your local machine or server.</li>
-        <li>Ensure you have PHP installed and configured on your server.</li>
-        <li>Place the repository's files in the directory being served by your server.</li>
-        <li>Navigate to 'index.html' through your web browser to start using the application.</li>
-    </ol>
+## Security
 
-    <h2>Dependencies</h2>
-    <ul>
-        <li>PHP 7 or higher</li>
-    </ul>
+The `.user.ini` file restricts the directories that the application can access. Adjust the paths as necessary for your environment, and ensure your PHP setup is secure.
 
-    <h2>License</h2>
-    <p>[Your License]</p>
+**Note: This application does not handle authentication or authorization. Ensure proper security measures are in place before deploying in a production environment.**
 
-    <!-- Include additional sections if necessary. -->
+## Contributions
 
-</body>
+Feel free to fork the project and submit your contributions via pull requests.
 
-</html>
+## License
+
+[MIT](https://opensource.org/licenses/MIT)
