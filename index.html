@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Downloader</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .downloader-container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            text-align: center;
+        }
+        .downloader-container input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .downloader-container input[type="submit"] {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .downloader-container input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        .message {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="downloader-container">
+    <h2>File Downloader</h2>
+    <form id="downloadForm">
+        <input name="url" type="text" placeholder="Enter file URL" required>
+        <br>
+        <input type="submit" value="Start Download">
+    </form>
+    <div class="message"></div>
+    <a href="download_page.php" class="download-history-btn" style="display:none;">Download History</a> <!-- Initially hidden; to be shown after successful download -->
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.getElementById('downloadForm');
+        const messageDiv = document.querySelector('.message');
+        const historyBtn = document.querySelector('.download-history-btn');
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+            const url = form.querySelector('input[name="url"]').value;
+
+            fetch('https://test.100thy.com/api.php', { // 替换为您的实际后端API URL
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ url: url })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    historyBtn.style.display = 'block'; // Show download history button
+                    messageDiv.textContent = 'File downloaded successfully!';
+                } else {
+                    messageDiv.textContent = data.error;
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        });
+    });
+</script>
+</body>
+</html>
